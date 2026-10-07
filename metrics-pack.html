@@ -1,0 +1,695 @@
+<title>Metrics Pack HĐMB chung cư</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,500&family=Be+Vietnam+Pro:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: single-column legal dossier — numbered 00–06 chain (the lab's mandated order), sticky section rail, gate verdicts as stamped callouts. */
+:root{
+  --bg:#f3f4f7; --surface:#ffffff; --surface-2:#eceef4;
+  --fg:#1b2030; --muted:#5c6378; --rule:#dadee8;
+  --ink:#2f4b9a; --ink-soft:#e7edfa;
+  --high:#9f2733; --high-soft:#fae9eb;
+  --warn:#845508; --warn-soft:#fbf0da;
+  --ok:#1d6546; --ok-soft:#e1f2e9;
+  --font-display:'Lora',Georgia,'Times New Roman',serif;
+  --font-body:'Be Vietnam Pro',system-ui,-apple-system,Segoe UI,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151c; --surface:#191d26; --surface-2:#1f242f;
+  --fg:#e6e8ef; --muted:#99a0b4; --rule:#2c3242;
+  --ink:#92abef; --ink-soft:#1b2640;
+  --high:#ef8b95; --high-soft:#331a1e;
+  --warn:#ddb05c; --warn-soft:#2e2411;
+  --ok:#6cc79a; --ok-soft:#132a20;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#12151c; --surface:#191d26; --surface-2:#1f242f;
+  --fg:#e6e8ef; --muted:#99a0b4; --rule:#2c3242;
+  --ink:#92abef; --ink-soft:#1b2640;
+  --high:#ef8b95; --high-soft:#331a1e;
+  --warn:#ddb05c; --warn-soft:#2e2411;
+  --ok:#6cc79a; --ok-soft:#132a20;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--font-body);font-weight:300;line-height:1.65;-webkit-font-smoothing:antialiased}
+.wrap{max-width:62rem;margin:0 auto;padding-inline:20px;padding-block:0 4rem}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;text-wrap:balance;line-height:1.22;margin:0}
+p{margin:0}
+a{color:var(--ink)}
+code,.mono{font-family:var(--font-mono);font-size:.86em;background:var(--surface-2);padding:.08em .34em;border-radius:3px;font-weight:400}
+.eyebrow{font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+/* masthead */
+header.top{padding-block:3rem 1.75rem;border-bottom:2px solid var(--fg)}
+header.top h1{font-size:clamp(1.9rem,5.2vw,3rem);letter-spacing:-.015em}
+header.top .sub{margin-top:.6rem;color:var(--muted);font-size:1.02rem;max-width:52ch}
+.meta{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin-top:1.5rem;font-size:.84rem;color:var(--muted)}
+.meta b{color:var(--fg);font-weight:500}
+
+/* draft notice */
+.notice{margin-top:1.75rem;background:var(--warn-soft);border-left:3px solid var(--warn);padding:1rem 1.1rem;border-radius:0 5px 5px 0}
+.notice .eyebrow{color:var(--warn)}
+.notice p{font-size:.9rem;margin-top:.35rem}
+
+/* rail */
+nav.rail{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--rule);margin-top:0}
+nav.rail ol{list-style:none;display:flex;gap:.1rem;overflow-x:auto;margin:0;padding:.55rem 0;font-size:.78rem;scrollbar-width:thin}
+nav.rail a{display:block;white-space:nowrap;padding:.3rem .62rem;border-radius:4px;text-decoration:none;color:var(--muted);font-weight:400}
+nav.rail a:hover{background:var(--ink-soft);color:var(--ink)}
+nav.rail .num{font-family:var(--font-mono);font-size:.74rem;color:var(--ink);margin-right:.4rem}
+
+/* sections */
+section{padding-block:2.75rem;border-bottom:1px solid var(--rule)}
+section>.head{display:flex;gap:1rem;align-items:baseline;margin-bottom:.4rem}
+section>.head .sn{font-family:var(--font-mono);font-size:1.5rem;color:var(--ink);font-weight:500;letter-spacing:-.02em}
+section>.head h2{font-size:clamp(1.3rem,3.6vw,1.75rem)}
+section>.lede{color:var(--muted);font-size:.93rem;max-width:66ch;margin-bottom:1.6rem}
+h3{font-size:1.06rem;margin-top:2rem;margin-bottom:.7rem}
+h3:first-of-type{margin-top:1.2rem}
+h4{font-size:.95rem;margin-top:1.3rem;margin-bottom:.45rem}
+section p+p{margin-top:.8rem}
+.measure{max-width:68ch}
+
+/* tiles */
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,15rem),1fr));gap:.9rem;margin-top:1.2rem}
+.tile{background:var(--surface);border:1px solid var(--rule);border-radius:7px;padding:1.05rem 1.1rem;min-width:0}
+.tile .eyebrow{display:block;margin-bottom:.45rem}
+.tile p{font-size:.92rem}
+
+/* tables */
+.tw{overflow-x:auto;margin-top:1rem;border:1px solid var(--rule);border-radius:7px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.875rem;min-width:34rem}
+th,td{text-align:left;padding:.62rem .8rem;border-bottom:1px solid var(--rule);vertical-align:top}
+thead th{background:var(--surface-2);font-weight:500;font-size:.74rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+tbody tr:last-child td{border-bottom:none}
+td:first-child{font-weight:500}
+table.narrow{min-width:26rem}
+.num-col{font-family:var(--font-mono);color:var(--ink);width:2.2rem;text-align:center}
+
+/* pills */
+.pill{display:inline-block;font-size:.72rem;font-weight:500;padding:.14rem .5rem;border-radius:20px;white-space:nowrap;font-family:var(--font-body)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.no{background:var(--high-soft);color:var(--high)}
+.pill.ink{background:var(--ink-soft);color:var(--ink)}
+
+/* callouts */
+.callout{margin-top:1.3rem;background:var(--ink-soft);border-radius:7px;padding:1.1rem 1.2rem}
+.callout .eyebrow{color:var(--ink);display:block;margin-bottom:.5rem}
+.callout .big{font-family:var(--font-display);font-size:1.08rem;line-height:1.5;font-style:italic}
+.gate{margin-top:1.5rem;border:1px solid var(--ok);background:var(--ok-soft);border-radius:7px;padding:.95rem 1.1rem}
+.gate .eyebrow{color:var(--ok);display:block;margin-bottom:.35rem}
+.gate p{font-size:.88rem}
+.danger{margin-top:1.2rem;background:var(--high-soft);border-left:3px solid var(--high);padding:.9rem 1.05rem;border-radius:0 5px 5px 0;font-size:.88rem}
+.danger .eyebrow{color:var(--high);display:block;margin-bottom:.3rem}
+.todo{margin-top:1.2rem;border:1px dashed var(--rule);border-radius:7px;padding:.95rem 1.1rem;font-size:.88rem;color:var(--muted)}
+.todo .eyebrow{display:block;margin-bottom:.3rem}
+
+/* NSM formula */
+.formula{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,12rem),1fr));gap:.75rem;margin-top:1.1rem}
+.fpart{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--ink);border-radius:5px;padding:.85rem .95rem;min-width:0}
+.fpart .eyebrow{display:block;color:var(--ink);margin-bottom:.35rem}
+.fpart p{font-size:.88rem}
+
+/* loop */
+.cycles{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,19rem),1fr));gap:1.1rem;margin-top:1.2rem}
+.cycle{background:var(--surface);border:1px solid var(--rule);border-radius:7px;padding:1.1rem;min-width:0}
+.cycle>.eyebrow{display:block;margin-bottom:.9rem;color:var(--ink)}
+.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0}
+.steps li{position:relative;padding-left:1.4rem;padding-bottom:1rem}
+.steps li:last-child{padding-bottom:0}
+.steps li::before{content:"";position:absolute;left:.26rem;top:.42rem;width:.46rem;height:.46rem;border-radius:50%;background:var(--ink)}
+.steps li:not(:last-child)::after{content:"";position:absolute;left:.48rem;top:1.05rem;bottom:.1rem;width:1px;background:var(--rule)}
+.steps .lab{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.steps .txt{font-size:.9rem}
+.steps .txt b{font-weight:500}
+
+/* lists */
+ul.clean,ol.clean{margin:.7rem 0 0;padding-left:1.25rem;font-size:.92rem}
+ul.clean li,ol.clean li{margin-bottom:.45rem}
+ol.rev{margin:1rem 0 0;padding-left:1.4rem;font-size:.92rem}
+ol.rev li{margin-bottom:.85rem}
+ol.rev li b{font-weight:500}
+
+/* gate summary */
+.gates{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,13rem),1fr));gap:.8rem;margin-top:1.2rem}
+.gcard{background:var(--surface);border:1px solid var(--rule);border-radius:7px;padding:.9rem 1rem;min-width:0}
+.gcard .eyebrow{display:block;color:var(--ok);margin-bottom:.3rem}
+.gcard h4{margin:0 0 .3rem;font-size:.95rem}
+.gcard p{font-size:.84rem;color:var(--muted)}
+
+footer{padding-block:2.5rem;color:var(--muted);font-size:.84rem}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px;border-radius:3px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:30rem){
+  section>.head{flex-direction:column;gap:.15rem}
+  section>.head .sn{font-size:1.1rem}
+}
+</style>
+
+<div class="wrap">
+
+<header class="top">
+  <p class="eyebrow">Track 1 · Day 20 · Product Metrics Lab</p>
+  <h1>AI rà soát hợp đồng mua bán nhà chung cư</h1>
+  <p class="sub">Bộ metric tối ưu core action cho nhân viên Pháp chế soát HĐMB sơ cấp trước khi hợp đồng được đưa khách ký.</p>
+  <div class="meta">
+    <span><b>Lưu Mạnh Hùng</b></span>
+    <span>MHV <b>2A202602942</b></span>
+    <span>Persona <b>Nhân viên Pháp chế</b></span>
+    <span>Cadence <b>NSM tuần, retention 4 tuần</b></span>
+    <span>NSM <b>Weekly Cleared Contracts</b></span>
+  </div>
+  <div class="notice">
+    <span class="eyebrow">Trạng thái bản này</span>
+    <p>Phạm vi (persona, góc core job, thị trường sơ cấp) do tôi quyết, kèm số liệu từ một buổi phỏng vấn nhân viên Pháp chế (n=1). Phần soạn thảo Phase 1–5 có dùng AI, kể cả ba thứ brief yêu cầu phải tự viết: core action, kết luận cadence, metric hypothesis. Tôi đã đọc và duyệt cả năm chỗ quyết định lõi. Khai báo đầy đủ trong AI Support Log.</p>
+  </div>
+</header>
+
+<nav class="rail" aria-label="Mục lục">
+  <ol>
+    <li><a href="#s00"><span class="num">00</span>Phạm vi</a></li>
+    <li><a href="#s01"><span class="num">01</span>Core Action</a></li>
+    <li><a href="#s02"><span class="num">02</span>Nature &amp; cadence</a></li>
+    <li><a href="#s03"><span class="num">03</span>Metric System</a></li>
+    <li><a href="#s04"><span class="num">04</span>Retention</a></li>
+    <li><a href="#s05"><span class="num">05</span>Product Loop</a></li>
+    <li><a href="#s06"><span class="num">06</span>Tracking</a></li>
+    <li><a href="#gates"><span class="num">··</span>Gate &amp; tự soi</a></li>
+  </ol>
+</nav>
+
+<section id="s00">
+  <div class="head"><span class="sn">00</span><h2>Dự án, persona, core job</h2></div>
+  <p class="lede">Chốt phạm vi trước khi chọn metric: một sản phẩm, một use case, một persona.</p>
+
+  <div class="tiles">
+    <div class="tile">
+      <span class="eyebrow">Dự án</span>
+      <p>Người dùng tải HĐMB (PDF/Word) lên, hệ thống trả về báo cáo rà soát: điều khoản rủi ro, mức độ, giải thích, đề xuất sửa.</p>
+    </div>
+    <div class="tile">
+      <span class="eyebrow">Use case chính</span>
+      <p>HĐMB căn hộ chung cư <b>sơ cấp</b> (chủ đầu tư bán cho khách), soát trước khi đưa khách ký. Không xét hợp đồng chuyển nhượng thứ cấp — rủi ro khác hẳn.</p>
+    </div>
+    <div class="tile">
+      <span class="eyebrow">Persona (một)</span>
+      <p>Nhân viên Pháp chế tại sàn giao dịch / chủ đầu tư — người ký nháy và chịu trách nhiệm nội dung pháp lý.<br><span style="color:var(--muted);font-size:.86rem">Sale là <i>bên liên quan</i>, không phải persona.</span></p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="eyebrow">Core job — bằng lời người dùng</span>
+    <p class="big">“Tôi phải đọc hàng chục trang hợp đồng trong vài tiếng. Chỉ cần sót một điều khoản là công ty chịu rủi ro, và người chịu trách nhiệm là tôi.”</p>
+  </div>
+
+  <h3>Hệ quả đã khoá cho các phase sau</h3>
+  <p class="measure">Góc đã chọn là rủi ro và sót điều khoản, không phải tiết kiệm thời gian, cũng không phải truy vết. Ba ràng buộc đi theo:</p>
+  <ul class="clean measure">
+    <li>Core value đi theo hướng <b>độ phủ rủi ro</b>, không phải “nhanh hơn”.</li>
+    <li>NSM bắt buộc có <b>quality threshold</b> về độ phủ, không được là số lượng hợp đồng thuần.</li>
+    <li>Counter-metric rõ ngay từ đầu: cảnh báo mọi điều khoản thì độ phủ đạt 100% nhưng Pháp chế mất niềm tin và bỏ qua cả báo cáo.</li>
+  </ul>
+</section>
+
+<section id="s01">
+  <div class="head"><span class="sn">01</span><h2>Core Action Card</h2></div>
+  <p class="lede">Hành vi gần core value nhất — và ba ứng viên bị loại khỏi vị trí đó.</p>
+
+  <h3>Bốn khái niệm, phân biệt rõ</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Khái niệm</th><th>Trả lời cho dự án này</th></tr></thead>
+      <tbody>
+        <tr><td>Core job</td><td>Không để sót điều khoản rủi ro trong HĐMB trước khi hợp đồng được đưa khách ký</td></tr>
+        <tr><td>Core action</td><td>Chốt xử lý toàn bộ phát hiện rủi ro của một hợp đồng rồi <b>xuất bản kết luận rà soát</b></td></tr>
+        <tr><td>Core value</td><td>Có cơ sở để khẳng định hợp đồng này đã được soát hết rủi ro trọng yếu → giảm phơi nhiễm trách nhiệm cá nhân</td></tr>
+        <tr><td>Core value event</td><td><code>contract_review_published</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Ba ứng viên bị loại</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Ứng viên</th><th>Vì sao loại</th></tr></thead>
+      <tbody>
+        <tr><td><code>contract_uploaded</code></td><td>Là <b>đầu vào</b>, không phải giá trị. Upload 50 hợp đồng rồi không soát cái nào thì core job vẫn chưa xong.</td></tr>
+        <tr><td>AI sinh ra báo cáo</td><td>Là <b>output hệ thống</b> — đúng cái bẫy brief cấm. AI liệt kê 30 phát hiện không nghĩa là Pháp chế đã nhận value; value chỉ xảy ra khi họ phán quyết từng phát hiện.</td></tr>
+        <tr><td><code>risk_finding_resolved</code></td><td>Rất gần value nhưng là <b>sub-step</b>: chốt 3/20 phát hiện rồi bỏ dở thì hợp đồng vẫn chưa an toàn. Giữ lại làm thước đo <i>depth</i> ở mục 03.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Core Action Card</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Thành phần</th><th>Câu trả lời</th></tr></thead>
+      <tbody>
+        <tr><td>Target user</td><td>Nhân viên Pháp chế tại sàn/chủ đầu tư, người ký nháy nội dung pháp lý HĐMB sơ cấp</td></tr>
+        <tr><td>Core job</td><td>Không để sót điều khoản rủi ro trước khi hợp đồng được đưa khách ký</td></tr>
+        <tr><td>Core action</td><td>Chốt trạng thái cuối cho toàn bộ phát hiện rủi ro <b>mức Cao</b> của một hợp đồng, rồi xuất bản kết luận rà soát cho bên Sale</td></tr>
+        <tr><td>Object</td><td>Một bản hợp đồng HĐMB (<code>contract_id</code>) và tập phát hiện rủi ro (<code>finding_id</code>) gắn với nó</td></tr>
+        <tr><td>Preconditions</td><td>Hợp đồng đã parse thành công · AI đã sinh xong danh sách phát hiện · user có quyền duyệt hợp đồng đó</td></tr>
+        <tr><td>Completion rule</td><td><b>100%</b> phát hiện mức Cao có trạng thái cuối — <code>accepted</code> kèm đề xuất sửa, hoặc <code>dismissed</code> kèm lý do — <b>và</b> bản kết luận được đóng băng với timestamp + <code>reviewer_id</code></td></tr>
+        <tr><td>Core value</td><td>Pháp chế có cơ sở và bằng chứng rằng hợp đồng này đã soát hết rủi ro trọng yếu</td></tr>
+        <tr><td>Evidence of value</td><td>Tồn tại bản kết luận đã xuất bản, mọi phát hiện mức Cao đều có quyết định kèm lý do; Sale nhận và dùng được bản đó</td></tr>
+        <tr><td>Candidate event</td><td><code>contract_review_published</code> (chính) · phụ trợ <code>risk_finding_resolved</code>, <code>contract_uploaded</code>, <code>review_report_generated</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Tự kiểm 5 tiêu chí — kết quả 5/5</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th class="num-col">#</th><th>Tiêu chí</th><th>Kết quả</th><th>Lập luận</th></tr></thead>
+      <tbody>
+        <tr><td class="num-col">1</td><td>Gần core value</td><td><span class="pill ok">Đạt</span></td><td>Hành vi xảy ra <b>chính là</b> value, không phải “tiến gần”</td></tr>
+        <tr><td class="num-col">2</td><td>Có thể lặp lại</td><td><span class="pill ok">Đạt</span></td><td>Mỗi hợp đồng mới là một lần lặp: công ty có dự án mới, luật thay đổi dẫn tới mẫu HĐMB mới, hợp đồng cần soát lại sau khi sửa</td></tr>
+        <tr><td class="num-col">3</td><td>Có thể quan sát</td><td><span class="pill ok">Đạt</span></td><td>Kiểm được bằng dữ liệu: <code>count(findings WHERE severity='high' AND status='open') = 0</code> và tồn tại bản ghi publish</td></tr>
+        <tr><td class="num-col">4</td><td>Có ý nghĩa</td><td><span class="pill warn">Đạt có điều kiện</span></td><td>Có đường game rõ ràng: bấm <code>dismissed</code> hàng loạt cho đủ điều kiện publish → bắt buộc có counter-metric ở mục 03</td></tr>
+        <tr><td class="num-col">5</td><td>Có thể tác động</td><td><span class="pill ok">Đạt</span></td><td>Team cải thiện được chất lượng phát hiện, cách xếp mức độ, gợi ý câu sửa, thư viện tiền lệ theo từng CĐT</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Mức “Cao” do ai xếp?</h3>
+  <p class="measure">Completion rule, NSM và counter-metric đều dựa vào mức Cao, nên mức này không được do AI tự phán. Nếu AI tự xếp thì NSM đổi mỗi khi đổi prompt và đang đo output hệ thống chứ không đo hành vi của user.</p>
+  <div class="callout">
+    <span class="eyebrow">Rule-book làm nền, Pháp chế được ghi đè</span>
+    <p class="big" style="font-size:.95rem">Mức Cao khi phát hiện thuộc một trong các nhóm điều khoản trọng yếu của <b>Rule-book Pháp chế</b> (có số phiên bản, do Trưởng phòng Pháp chế phê duyệt). AI chỉ gán điều khoản vào nhóm, không tự quyết mức. Mỗi lần Pháp chế nâng hoặc hạ mức được ghi qua <code>severity_source</code> ∈ <code>{rulebook, reviewer_override}</code>.</p>
+  </div>
+  <div class="tw">
+    <table class="narrow">
+      <thead><tr><th class="num-col">#</th><th>Nhóm điều khoản trọng yếu của HĐMB sơ cấp</th></tr></thead>
+      <tbody>
+        <tr><td class="num-col">1</td><td>Tiến độ và phương thức thanh toán</td></tr>
+        <tr><td class="num-col">2</td><td>Thời điểm bàn giao + chế tài khi chậm bàn giao</td></tr>
+        <tr><td class="num-col">3</td><td>Diện tích căn hộ — thông thuỷ vs tim tường + cách xử lý chênh lệch</td></tr>
+        <tr><td class="num-col">4</td><td>Phí bảo trì 2% — ai thu, giữ ở đâu, bàn giao cho Ban quản trị khi nào</td></tr>
+        <tr><td class="num-col">5</td><td>Sở hữu chung / sở hữu riêng — chỗ đậu xe, tầng thương mại, sân thượng</td></tr>
+        <tr><td class="num-col">6</td><td>Cam kết cấp giấy chứng nhận (sổ hồng) + thời hạn + chế tài</td></tr>
+        <tr><td class="num-col">7</td><td>Lãi chậm thanh toán và điều kiện đơn phương chấm dứt</td></tr>
+        <tr><td class="num-col">8</td><td>Điều kiện chuyển nhượng hợp đồng</td></tr>
+        <tr><td class="num-col">9</td><td>Điều khoản bất khả kháng</td></tr>
+        <tr><td class="num-col">10</td><td>Cơ quan giải quyết tranh chấp</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="todo">
+    <span class="eyebrow">Phần còn phụ thuộc AI</span>
+    Việc gán một điều khoản vào đúng nhóm vẫn là output của AI. Hai thứ kiểm soát nó: Pháp chế có quyền ghi đè, và tỉ lệ ghi đè cùng tỉ lệ cảnh báo sai là counter-metric. Phiên bản Rule-book và ngày ban hành do công ty xác định khi triển khai.
+  </div>
+
+  <div class="gate">
+    <span class="eyebrow">Gate 1 — bảo vệ thế nào</span>
+    <p>Có actor (Pháp chế), object (bản hợp đồng + tập phát hiện), completion rule (100% findings mức Cao có trạng thái cuối + publish). Không phải “mở app” vì mở app không tạo ra bản kết luận nào. Không phải “hỏi AI” vì AI trả lời xong mà Pháp chế chưa phán quyết thì hợp đồng vẫn chưa an toàn và trách nhiệm vẫn treo.</p>
+  </div>
+</section>
+
+<section id="s02">
+  <div class="head"><span class="sn">02</span><h2>Nature &amp; cadence</h2></div>
+  <p class="lede">Nhịp đo đi từ bản chất hành vi, không từ khoảng thời gian dashboard hay dùng.</p>
+
+  <div class="callout">
+    <span class="eyebrow">Nguồn dữ liệu — một cuộc phỏng vấn nhân viên Pháp chế (n = 1)</span>
+    <p class="big" style="font-size:.95rem">Chỉ một người nên chưa đại diện cho cả ngành. Số liệu là mốc khởi điểm, đo lại bằng <code>contract_uploaded</code> → <code>contract_review_published</code> khi sản phẩm chạy.</p>
+  </div>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Câu hỏi</th><th>Câu trả lời</th><th>Dùng cho</th></tr></thead>
+      <tbody>
+        <tr><td>Khối lượng mỗi tuần</td><td>Trung bình <b>1–3 hợp đồng</b></td><td>Cadence</td></tr>
+        <tr><td>Thời gian mỗi hợp đồng</td><td><b>1–2 giờ</b>, tuỳ độ dài và độ phức tạp</td><td>Effort</td></tr>
+        <tr><td>Hợp đồng đến từ đâu</td><td><b>Kênh nội bộ</b> khi công ty có dự án mới</td><td>Trigger</td></tr>
+        <tr><td>Tuần trống</td><td>Trong 1 tháng có <b>ít nhất 1 tuần</b> không có hợp đồng</td><td>Cadence, Retention</td></tr>
+        <tr><td>Mẫu HĐMB đổi khi nào</td><td>Khi <b>luật thay đổi</b> hoặc có <b>dự án mới</b> (người trả lời nói không nắm rõ)</td><td>Repeat condition</td></tr>
+        <tr><td>Khi nào cần Trưởng phòng duyệt</td><td>Khó tự quyết, lưỡng lự giữa quyền lợi các bên, hoặc liên quan quy định pháp luật</td><td>Dependency</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Action Nature Card</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Thành phần</th><th>Câu trả lời</th></tr></thead>
+      <tbody>
+        <tr><td>Actor</td><td>Cá nhân Nhân viên Pháp chế (<code>reviewer_id</code>). Phòng Pháp chế chịu trách nhiệm pháp lý, nhưng hành vi do một người thực hiện và ký tên</td></tr>
+        <tr><td>Intent</td><td>Cần phát hành một hợp đồng cụ thể mà không gánh rủi ro sót điều khoản</td></tr>
+        <tr><td>Trigger</td><td><b>Nguồn bên ngoài người dùng</b> — hợp đồng đến qua kênh nội bộ khi công ty có dự án mới. Không phải user tự nhiên mở app. Người gửi cụ thể chưa xác minh</td></tr>
+        <tr><td>Effort</td><td>Trung bình, <b>1–2 giờ/hợp đồng</b> (phỏng vấn n=1): đọc hợp đồng, đối chiếu với quy định pháp luật, viết đề xuất sửa. Cần bản hợp đồng, mẫu chuẩn nội bộ, tiền lệ đã duyệt</td></tr>
+        <tr><td>Value timing</td><td><b>Ngay</b> khi xuất bản kết luận · <b>tích luỹ</b> theo độ dày thư viện tiền lệ · một phần <b>trễ rất xa</b> (giá trị thật chỉ xác nhận khi không phát sinh tranh chấp sau bàn giao — quá trễ để làm metric)</td></tr>
+        <tr><td>State</td><td>Hợp đồng + tập phát hiện + quyết định &amp; lý do từng phát hiện + bản redline + <code>reviewer_id</code> + timestamp → kết tinh thành thư viện tiền lệ nội bộ và bộ mẫu điều khoản đã duyệt</td></tr>
+        <tr><td>Dependency</td><td>Nguồn cung công việc do lịch dự án của công ty quyết · Trưởng phòng Pháp chế duyệt lại khi trường hợp khó tự quyết, lưỡng lự giữa quyền lợi các bên, hoặc liên quan quy định pháp luật · bản mẫu HĐMB (đổi khi luật đổi hoặc có dự án mới)</td></tr>
+        <tr><td>Repeat condition</td><td>Công ty có dự án mới · luật thay đổi dẫn tới mẫu HĐMB mới · hợp đồng cần soát lại sau khi sửa</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Kết luận cadence</h3>
+  <p class="measure">Dạng hành vi đã chọn: <b>workflow của team</b>, có pha “theo dự án”. Không chọn “thói quen thường xuyên” vì công việc không do user tự khởi phát.</p>
+  <div class="callout">
+    <span class="eyebrow">Theo template của brief</span>
+    <p class="big">Đối với <b>nhân viên Pháp chế tại sàn/chủ đầu tư bất động sản</b>, core action <b>chốt toàn bộ phát hiện rủi ro và xuất bản kết luận rà soát cho một hợp đồng</b> thường xuất hiện <b>trung bình 1–3 lần mỗi tuần, và ít nhất một tuần mỗi tháng không có hợp đồng nào</b> vì <b>hợp đồng đến từ kênh nội bộ mỗi khi công ty có dự án mới chứ không do họ tự khởi phát, và mỗi hợp đồng là một đơn vị công việc độc lập mất khoảng 1–2 giờ</b>. Do đó, nhịp đo phù hợp là <b>theo tuần cho NSM và engagement, khung 4 tuần cho retention</b>, ở cấp <b>nhân viên Pháp chế</b>.</p>
+  </div>
+
+  <div class="tiles">
+    <div class="tile">
+      <span class="eyebrow">Không daily</span>
+      <p>Trung bình 1–3 hợp đồng mỗi tuần nghĩa là phần lớn các ngày không có việc. DAU cho tín hiệu nhiễu và tạo áp lực sai.</p>
+    </div>
+    <div class="tile">
+      <span class="eyebrow">Retention theo khung 4 tuần</span>
+      <p>Có ít nhất một tuần trống mỗi tháng. Đọc một tuần đơn lẻ sẽ tính nhầm khoảng một phần tư reviewer đang dùng bình thường là đã mất. Khung 4 tuần phủ trọn một tuần trống. NSM vẫn đọc theo tuần để thấy dao động theo lịch dự án.</p>
+    </div>
+    <div class="tile">
+      <span class="eyebrow">Frequency cao ≠ value cao</span>
+      <p>Số hợp đồng/tuần do lịch dự án quyết định, không phải thứ sản phẩm tự đẩy lên được. Hướng tốt lên là <b>cùng độ phủ nhưng ít công hơn</b>, không phải ngồi trong app lâu hơn.</p>
+    </div>
+  </div>
+
+  <div class="gate">
+    <span class="eyebrow">Gate 2 — bảo vệ thế nào</span>
+    <p>Chữ “vì” đứng được vì trigger là <i>hợp đồng đến từ kênh nội bộ khi có dự án mới</i> (đã xác minh qua phỏng vấn), nên nhịp đo phải khớp lịch dự án, không khớp thói quen cá nhân. Có số liệu mốc 1–3 hợp đồng/tuần và ≥1 tuần trống/tháng, chính số liệu đó giải thích vì sao retention dùng khung 4 tuần.</p>
+  </div>
+</section>
+
+<section id="s03">
+  <div class="head"><span class="sn">03</span><h2>Metric System</h2></div>
+  <p class="lede">Activation, engagement, North Star, leading indicators, counter-metrics.</p>
+
+  <h3>Activation</h3>
+  <div class="tiles">
+    <div class="tile"><span class="eyebrow">Start event</span><p><code>workspace_joined</code> — tài khoản Pháp chế vào workspace công ty lần đầu</p></div>
+    <div class="tile"><span class="eyebrow">Activation event</span><p><code>contract_review_published</code> lần đầu — đã đi hết một vòng giá trị thật</p></div>
+    <div class="tile"><span class="eyebrow">Time window</span><p><b>14 ngày</b> kể từ start event. Mỗi Pháp chế có ít nhất một tuần trống mỗi tháng, nên cửa sổ 7 ngày có thể rơi đúng vào tuần không có hợp đồng</p></div>
+  </div>
+
+  <h4>Active ≠ Activated</h4>
+  <div class="tw">
+    <table class="narrow">
+      <thead><tr><th>Khái niệm</th><th>Định nghĩa</th></tr></thead>
+      <tbody>
+        <tr><td>Active (weekly)</td><td>Có ≥1 <code>contract_review_published</code> trong tuần lịch</td></tr>
+        <tr><td>Activated</td><td>Publish ≥<b>2</b> hợp đồng trong <b>30 ngày</b> đầu, trong đó ≥1 hợp đồng có ≥1 phát hiện mức Cao được <code>accepted</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="measure" style="margin-top:.9rem;font-size:.92rem">Điều kiện “≥1 phát hiện mức Cao được <code>accepted</code>” là quality threshold của activation: nó loại trường hợp user publish cho xong bằng cách <code>dismissed</code> sạch mọi phát hiện — người đó active nhưng chưa bao giờ thực sự nhận giá trị rà soát.</p>
+  <div class="danger">
+    <span class="eyebrow">Không dùng làm activation</span>
+    “Xem hết hướng dẫn”, “đăng nhập”, “upload hợp đồng đầu tiên” — cả ba đều xảy ra trước khi Pháp chế chạm vào core value.
+  </div>
+
+  <h3>Engagement — chọn hai góc</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Góc</th><th>Metric</th><th>Vì sao chọn</th></tr></thead>
+      <tbody>
+        <tr><td>Frequency</td><td>Số hợp đồng được xuất bản kết luận / Pháp chế / tuần</td><td>Khớp cadence weekly ở mục 02</td></tr>
+        <tr><td>Depth</td><td>Số phát hiện mức Cao được chốt kèm lý do / mỗi hợp đồng</td><td>Phân biệt soát kỹ với soát cho xong</td></tr>
+        <tr><td>Breadth</td><td><span class="pill no">Bỏ</span></td><td>Bài chỉ phân tích một use case; đo breadth lúc này là metric không có quyết định nào đi kèm</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="measure" style="margin-top:.9rem;font-size:.92rem"><b>Frequency khác NSM ở đâu:</b> NSM là tổng số hợp đồng đã soát xong ở cấp toàn workspace, có quality threshold. Frequency đọc phân bố theo từng reviewer: trung vị số hợp đồng/reviewer/tuần và tỉ lệ reviewer có ít nhất 1 hợp đồng trong tuần. NSM cho biết sản phẩm tạo ra bao nhiêu giá trị; Frequency cho biết giá trị đó dàn đều hay dồn vào vài người.</p>
+
+  <h3>North Star Metric</h3>
+  <div class="callout">
+    <span class="eyebrow">Weekly Cleared Contracts (WCC)</span>
+    <p class="big">Số hợp đồng HĐMB được Pháp chế xuất bản kết luận rà soát mỗi tuần, trong đó 100% phát hiện mức Cao đều có quyết định kèm lý do.</p>
+  </div>
+  <div class="formula">
+    <div class="fpart"><span class="eyebrow">Unit of value</span><p>Một hợp đồng được soát xong</p></div>
+    <div class="fpart"><span class="eyebrow">Quality threshold</span><p>100% phát hiện mức Cao có quyết định <b>kèm lý do</b>. Mức Cao lấy từ <b>Rule-book Pháp chế</b>, không do AI tự quyết</p></div>
+    <div class="fpart"><span class="eyebrow">Frequency</span><p>Mỗi tuần</p></div>
+  </div>
+  <h4>Ba ứng viên NSM bị loại</h4>
+  <ul class="clean measure">
+    <li><b>“Số lượt hỏi AI” / “số hợp đồng upload”</b> — số lượng thuần, không có quality threshold, game được bằng cách upload hàng loạt.</li>
+    <li><b>“Số giờ tiết kiệm”</b> — nghe đúng với core job nhưng không có event nào tính được nó trung thực. Vi phạm luật “metric nào cũng phải có event để tính”.</li>
+    <li><b>Doanh thu</b> — không phản ánh value user nhận được.</li>
+  </ul>
+
+  <h3>Leading indicators</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th class="num-col">#</th><th>Indicator</th><th>Vì sao tin nó dự báo được core action lặp lại</th></tr></thead>
+      <tbody>
+        <tr><td class="num-col">1</td><td>Tỉ lệ phát hiện mức Cao được <code>accepted</code> trong tuần đầu</td><td>Pháp chế chấp nhận phát hiện của AI thay vì bỏ qua nghĩa là báo cáo đúng chuyên môn. Niềm tin vào chất lượng phát hiện là điều kiện cần để họ mang hợp đồng tiếp theo vào hệ thống thay vì mở Word</td></tr>
+        <tr><td class="num-col">2</td><td>Time-to-first-publish (giờ, từ <code>contract_uploaded</code> → <code>contract_review_published</code>)</td><td>Rà soát hợp đồng luôn có deadline kinh doanh. Lần đầu kịp deadline thì lần sau họ còn chọn dùng công cụ; chậm hơn đọc tay thì họ quay về cách cũ ngay</td></tr>
+        <tr><td class="num-col">3</td><td>Số điều khoản được lưu vào thư viện tiền lệ mỗi tuần</td><td>Đây là saved state của loop. Càng nhiều tiền lệ thì hợp đồng sau càng tốn ít công mà vẫn đạt completion rule, nên nó dự báo việc core action tái diễn</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Counter-metrics</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th class="num-col">#</th><th>Counter-metric</th><th>Chặn đường game nào</th></tr></thead>
+      <tbody>
+        <tr><td class="num-col">1</td><td>Tỉ lệ <code>dismissed</code> <b>không lý do</b> trên phát hiện mức Cao</td><td>Chặn trực tiếp cách game NSM: bấm bỏ qua hàng loạt cho đủ điều kiện publish. NSM tăng mà metric này tăng theo nghĩa là số liệu rỗng</td></tr>
+        <tr><td class="num-col">2</td><td>Tỉ lệ cảnh báo sai — phát hiện bị <code>dismissed</code> với lý do “không phải rủi ro” / tổng phát hiện</td><td>Chặn cách game độ phủ: cảnh báo mọi điều khoản để chắc chắn không sót. Độ phủ 100% nhưng Pháp chế mất niềm tin và bỏ qua cả báo cáo</td></tr>
+        <tr><td class="num-col">3</td><td>Chi phí LLM mỗi hợp đồng</td><td>Chặn việc mua độ phủ bằng mô hình ngày càng đắt — NSM tăng nhưng phá đơn vị kinh tế</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="gate">
+    <span class="eyebrow">Gate 3 (phần metric) — bảo vệ thế nào</span>
+    <p>Activation có đủ start event, activation event và window 14 ngày. NSM đủ ba thành phần của công thức. Có ba counter-metric, trong đó #1 nhắm đúng đường game của chính NSM.</p>
+  </div>
+</section>
+
+<section id="s04">
+  <div class="head"><span class="sn">04</span><h2>Retention Definition</h2></div>
+  <p class="lede">Đủ sáu thành phần và khớp đúng kết luận cadence ở mục 02.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Thành phần</th><th>Định nghĩa</th><th>Vì sao chọn vậy</th></tr></thead>
+      <tbody>
+        <tr><td>Unit</td><td>Nhân viên Pháp chế (<code>reviewer_id</code>)</td><td>Là người thực hiện core action và chịu trách nhiệm cá nhân</td></tr>
+        <tr><td>Cohort entry</td><td>Tuần lịch user phát sinh <code>contract_review_published</code> <b>đầu tiên</b></td><td>Không lấy tuần đăng ký: đăng ký chưa phải nhận value. Vào cohort ở mốc có value mới đọc được đường retention</td></tr>
+        <tr><td>Return event</td><td><code>contract_review_published</code></td><td>Chính core value event. Không phải <code>login</code>, không phải <code>contract_uploaded</code></td></tr>
+        <tr><td>Window</td><td>Khung 4 tuần: B1 = tuần 1–4 sau tuần vào cohort, B2 = tuần 5–8. Kèm lát cắt theo từng dự án mới của công ty</td><td>Mỗi Pháp chế có ít nhất một tuần trống mỗi tháng, nên một tuần đơn lẻ không đọc được. Khung 4 tuần phủ trọn một tuần trống</td></tr>
+        <tr><td>Threshold</td><td>≥1 trong khung 4 tuần</td><td>Với 1–3 hợp đồng/tuần và tuần trống, một lần trong khung là mức tối thiểu hợp lý. Chưa đặt ngưỡng “nhiều lần” vì chưa có dữ liệu</td></tr>
+        <tr><td>Segment</td><td>Pháp chế đã <b>activated</b>, tách theo loại tổ chức (sàn vs chủ đầu tư)</td><td>Nguồn cung công việc khác nhau thì retention không so được với nhau. Chưa tách theo khối lượng vì mức trung bình chỉ 1–3 hợp đồng/tuần</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout">
+    <span class="eyebrow">Định nghĩa viết liền một câu, để dán vào dashboard</span>
+    <p class="big"><b>Retention khung 4 tuần (B1)</b> = tỉ lệ nhân viên Pháp chế <b>đã activated</b>, vào cohort ở <b>tuần có <code>contract_review_published</code> đầu tiên</b>, có <b>ít nhất 1</b> <code>contract_review_published</code> trong <b>bốn tuần liền sau</b> tuần vào cohort — tính riêng theo từng loại tổ chức.</p>
+  </div>
+
+  <h3>So với ba mốc, không so với con số cứng</h3>
+  <div class="tiles">
+    <div class="tile"><span class="eyebrow">Natural cycle</span><p>Trung bình 1–3 hợp đồng/tuần, ít nhất một tuần trống mỗi tháng (phỏng vấn n=1). Một tuần không có hợp đồng không phải churn. Đọc theo khung 4 tuần liên tiếp, không đọc từng tuần.</p></div>
+    <div class="tile"><span class="eyebrow">Cohort đúng segment</span><p>So Pháp chế sàn với Pháp chế sàn; so Pháp chế chủ đầu tư với Pháp chế chủ đầu tư; so mỗi cohort với cohort trước của chính segment đó.</p></div>
+    <div class="tile"><span class="eyebrow">Benchmark category</span><p>So với công cụ legal / document workflow B2B khi có số liệu có nguồn. Chưa có số nào nên bài không nêu con số benchmark. Không so với consumer app.</p></div>
+  </div>
+  <div class="danger">
+    <span class="eyebrow">Không làm</span>
+    Đặt mục tiêu kiểu “retention B1 phải trên 40%” khi chưa đo được natural cycle của segment đó.
+  </div>
+
+  <div class="gate">
+    <span class="eyebrow">Gate 3 (phần retention) — bảo vệ thế nào</span>
+    <p>Đủ sáu thành phần. Window <code>weekly + project-based</code> khớp đúng kết luận cadence <code>workflow / weekly</code> ở mục 02. Return event là core value event chứ không phải login.</p>
+  </div>
+
+  <div class="todo">
+    <span class="eyebrow">Chưa làm — không nhận là đã làm</span>
+    Bản retention ở cấp account/công ty. Sản phẩm hướng B2B, nên Pháp chế nghỉ việc hoặc đổi phòng sẽ làm vỡ cohort cá nhân trong khi công ty vẫn là khách hàng.
+  </div>
+</section>
+
+<section id="s05">
+  <div class="head"><span class="sn">05</span><h2>Product Loop</h2></div>
+  <p class="lede">Loại loop: <b>workflow</b>, có thành phần <b>progress</b> ở phần thư viện tiền lệ tích luỹ. Chu kỳ 2 phải rẻ hơn chu kỳ 1 — đó là điều kiện để gọi là loop.</p>
+
+  <div class="cycles">
+    <div class="cycle">
+      <span class="eyebrow">Chu kỳ 1</span>
+      <ul class="steps">
+        <li><span class="lab">Natural trigger</span><span class="txt">Công ty có dự án mới, hợp đồng đến qua kênh nội bộ</span></li>
+        <li><span class="lab">Core action</span><span class="txt">Upload → chốt từng phát hiện rủi ro (<code>accepted</code>/<code>dismissed</code> + lý do) → <b>xuất bản kết luận</b></span></li>
+        <li><span class="lab">Immediate value</span><span class="txt">Hợp đồng sạch rủi ro trọng yếu, kèm biên bản ghi rõ ai quyết định gì</span></li>
+        <li><span class="lab">Saved state</span><span class="txt">Quyết định + lý do + câu sửa được lưu thành <b>tiền lệ nội bộ</b>; mẫu điều khoản đã duyệt của CĐT đó được ghi nhận</span></li>
+      </ul>
+    </div>
+    <div class="cycle">
+      <span class="eyebrow">Chu kỳ 2</span>
+      <ul class="steps">
+        <li><span class="lab">Next natural trigger</span><span class="txt">Dự án mới tiếp theo, luật đổi dẫn tới mẫu HĐMB mới, hoặc hợp đồng cần soát lại sau khi sửa</span></li>
+        <li><span class="lab">Core action tiếp theo</span><span class="txt">Upload hợp đồng mới → hệ thống <b>tự khớp tiền lệ đã duyệt</b> → phần lớn phát hiện đã có câu trả lời sẵn, Pháp chế chỉ chốt phần mới</span></li>
+        <li><span class="lab">Repeat value</span><span class="txt">Soát xong <b>nhanh hơn</b> chu kỳ trước với <b>cùng độ phủ</b>, và tin cậy hơn vì neo vào tiền lệ chính công ty mình đã duyệt</span></li>
+        <li><span class="lab">Saved state dày thêm</span><span class="txt">Vòng sau càng rẻ — đây là phần progress của loop</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Reason to return nếu bỏ hết notification</h3>
+  <ol class="clean measure">
+    <li><b>Công việc tự đến từ bên ngoài.</b> công ty có dự án mới thì hợp đồng đến qua kênh nội bộ; nhu cầu không do sản phẩm tạo ra, nên không cần notification để bịa ra nhịp quay lại.</li>
+    <li><b>Thư viện tiền lệ chỉ nằm trong hệ thống.</b> Soát hợp đồng ở ngoài là tự bỏ lợi thế đã tích luỹ và mất luôn biên bản truy vết.</li>
+  </ol>
+  <p class="measure" style="margin-top:.9rem;font-size:.92rem">Đúng luật “nurture chỉ khuếch đại nature”: notification ở đây chỉ để nhắc deadline hợp đồng đang treo, không phải lý do quay lại.</p>
+
+  <h3>Metric hypothesis</h3>
+  <div class="callout">
+    <span class="eyebrow">Theo template của brief</span>
+    <p class="big">Nếu loop này hoạt động, metric <b>retention khung 4 tuần (B1) của Pháp chế đã activated</b> (return event = <code>contract_review_published</code>) sẽ thay đổi theo hướng <b>tăng</b> trong <b>8 tuần kể từ khi thư viện tiền lệ được bật</b>, vì <b>mỗi hợp đồng đã soát làm giàu tiền lệ nội bộ, khiến hợp đồng kế tiếp tốn ít công hơn mà vẫn đạt completion rule — chi phí lặp lại giảm dần theo từng vòng</b>.</p>
+  </div>
+  <div class="danger">
+    <span class="eyebrow">Kiểm chứng kèm, để hypothesis không bị đọc lệch</span>
+    Trong cùng 8 tuần, median time-to-publish mỗi hợp đồng phải <b>giảm</b> trong khi số phát hiện mức Cao được chốt / hợp đồng <b>không giảm</b>. Nếu cả hai cùng giảm thì loop không hoạt động — chỉ là Pháp chế đang soát nhanh cho xong.
+  </div>
+
+  <div class="gate">
+    <span class="eyebrow">Gate 4 (phần loop) — bảo vệ thế nào</span>
+    <p>Loop có hai chu kỳ đầy đủ và chu kỳ 2 rẻ hơn chu kỳ 1 nhờ saved state. Hypothesis trỏ về đúng một metric đã định nghĩa ở mục 04. Không có streak, badge hay notification nào làm động lực.</p>
+  </div>
+</section>
+
+<section id="s06">
+  <div class="head"><span class="sn">06</span><h2>Tracking</h2></div>
+  <p class="lede">Sáu event, mỗi event map về ít nhất một metric ở mục 03 hoặc 04. Không có event nào “track cho vui”.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Tên event</th><th>Ý nghĩa — điều đã xảy ra</th><th>Thời điểm ghi nhận</th><th>Metric sử dụng</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><code>contract_uploaded</code></td>
+          <td>Một bản HĐMB đã được nạp và parse thành công</td>
+          <td>Khi parser trả về trạng thái thành công và văn bản đã lưu. Không ghi khi bấm nút chọn file, không ghi khi parse lỗi</td>
+          <td>Mẫu số của time-to-first-publish; mẫu số của tỉ lệ hoàn tất rà soát</td>
+        </tr>
+        <tr>
+          <td><code>review_report_generated</code></td>
+          <td>AI đã sinh xong danh sách phát hiện rủi ro cho hợp đồng</td>
+          <td>Khi toàn bộ phát hiện đã lưu kèm mức độ và job = <code>completed</code></td>
+          <td>Funnel upload→report→publish; chi phí LLM/hợp đồng. <b>Không</b> dùng làm core action</td>
+        </tr>
+        <tr>
+          <td><code>risk_finding_resolved</code></td>
+          <td>Một phát hiện đã được Pháp chế chốt trạng thái cuối kèm lý do. Thuộc tính <code>severity_source</code> ∈ <code>{rulebook, reviewer_override}</code> cho biết mức độ lấy từ Rule-book hay do Pháp chế ghi đè</td>
+          <td>Khi trạng thái phát hiện chuyển từ <code>open</code> sang trạng thái cuối và lý do đã lưu</td>
+          <td>Engagement-depth; counter #1 và #2; leading #1; tỉ lệ ghi đè mức độ</td>
+        </tr>
+        <tr>
+          <td><code>contract_review_published</code><br><span class="pill ink">core value event</span></td>
+          <td>Pháp chế xuất bản kết luận; 100% phát hiện mức Cao đã có trạng thái cuối</td>
+          <td>Khi bản kết luận được đóng băng (timestamp + <code>reviewer_id</code>) và điều kiện 100% findings mức Cao đạt</td>
+          <td><b>NSM (WCC)</b>; Activation event; Retention return event; Engagement-frequency</td>
+        </tr>
+        <tr>
+          <td><code>review_precedent_saved</code></td>
+          <td>Một điều khoản hoặc câu sửa được lưu vào thư viện tiền lệ nội bộ</td>
+          <td>Khi bản ghi tiền lệ được tạo và gắn <code>clause_id</code> + <code>contract_id</code></td>
+          <td>Leading #3 — saved state của loop</td>
+        </tr>
+        <tr>
+          <td><code>precedent_applied_to_finding</code></td>
+          <td>Một phát hiện ở hợp đồng mới được xử lý bằng tiền lệ đã duyệt trước đó</td>
+          <td>Khi hệ thống khớp tiền lệ và Pháp chế chấp nhận áp dụng</td>
+          <td>Bằng chứng chu kỳ 2 của loop đang chạy; đầu vào cho metric hypothesis</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Acceptance criteria</h3>
+  <div class="tiles">
+    <div class="tile">
+      <span class="eyebrow">AC-1 · chống ghi trùng</span>
+      <p>Với mỗi cặp <code>reviewer_id</code> và <code>contract_id</code>, hệ thống chỉ ghi <code>contract_review_published</code> khi bản kết luận chuyển từ trạng thái nháp sang đã xuất bản <b>và</b> số phát hiện mức Cao còn trạng thái <code>open</code> bằng 0. Tải lại trang, gửi lại email hay mở lại bản đã publish không được tạo thêm event cho cùng lần xuất bản đó.</p>
+    </div>
+    <div class="tile">
+      <span class="eyebrow">AC-2 · chỉ bắn khi hoàn tất</span>
+      <p>Với mỗi <code>finding_id</code>, <code>risk_finding_resolved</code> chỉ được ghi một lần cho mỗi lần chuyển trạng thái từ <code>open</code> sang trạng thái cuối, và phải kèm <code>resolution</code>, <code>reason_text</code> khác rỗng và <code>severity_source</code>. Autosave trong lúc Pháp chế đang gõ lý do không được bắn event. Nếu phát hiện bị mở lại và chốt lần nữa, ghi event mới kèm <code>resolution_round</code> tăng dần, không ghi đè event cũ.</p>
+    </div>
+    <div class="tile">
+      <span class="eyebrow">AC-3 · loại trừ &amp; timezone</span>
+      <p>Không ghi event cho tài khoản nội bộ (<code>is_internal=true</code>), tài khoản demo và job chạy thử của đội phát triển. Mọi event quy về tuần lịch theo timezone <code>Asia/Ho_Chi_Minh</code> để cohort theo tuần không bị lệch ngày.</p>
+    </div>
+  </div>
+
+  <div class="gate">
+    <span class="eyebrow">Gate 5 (phần tracking) — bảo vệ thế nào</span>
+    <p>Sáu event, nằm trong khoảng 4–8 mà brief yêu cầu; mỗi event map về ít nhất một metric. Ba acceptance criteria, trong đó AC-1 và AC-2 nhắm đúng hai bẫy brief nêu: bắn khi mới bấm nút, và reload/autosave ghi trùng.</p>
+  </div>
+
+  <div class="todo">
+    <span class="eyebrow">Chưa làm — không nhận là đã làm</span>
+    Bản tracking đầy đủ theo bảy điều Metric Definition Contract. Còn thiếu phần <code>identity</code> (định danh user khi dùng SSO công ty), danh sách <code>properties</code> bắt buộc cho từng event, và quy tắc versioning khi mẫu HĐMB của CĐT đổi.
+  </div>
+</section>
+
+<section id="gates">
+  <div class="head"><span class="sn">··</span><h2>Năm gate và bảy câu tự soi</h2></div>
+  <p class="lede">Đối chiếu lần cuối trước khi nộp.</p>
+
+  <div class="gates">
+    <div class="gcard"><span class="eyebrow">Gate 1</span><h4>Core Action</h4><p>Có actor, object, completion rule; 5/5 tiêu chí tự kiểm, tiêu chí 4 đạt kèm điều kiện đã xử lý bằng counter-metric.</p></div>
+    <div class="gcard"><span class="eyebrow">Gate 2</span><h4>Cadence</h4><p>Đúng template, “vì” đứng được, nhịp weekly không mâu thuẫn dạng hành vi workflow.</p></div>
+    <div class="gcard"><span class="eyebrow">Gate 3</span><h4>Metric &amp; Retention</h4><p>Retention đủ 6 thành phần và khớp cadence; NSM đủ 3 thành phần; 3 counter-metric.</p></div>
+    <div class="gcard"><span class="eyebrow">Gate 4</span><h4>Loop</h4><p>2 chu kỳ, chu kỳ 2 rẻ hơn, hypothesis trỏ về retention khung 4 tuần ở mục 04.</p></div>
+    <div class="gcard"><span class="eyebrow">Gate 5</span><h4>Tracking</h4><p>6 event đều map metric; 3 acceptance criteria nhắm đúng hai bẫy phổ biến.</p></div>
+  </div>
+
+  <h3>Bảy câu tự soi</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Câu tự soi</th><th>Kết quả</th><th>Căn cứ</th></tr></thead>
+      <tbody>
+        <tr><td>Core action không phải thao tác giao diện hay output hệ thống?</td><td><span class="pill ok">Đạt</span></td><td>Đã loại tường minh ba ứng viên ở mục 01</td></tr>
+        <tr><td>Activation không phải “xem hết hướng dẫn” hay “đăng nhập”?</td><td><span class="pill ok">Đạt</span></td><td>Activation là <code>contract_review_published</code> lần đầu trong 14 ngày</td></tr>
+        <tr><td>Frequency không cao hơn nhu cầu thật?</td><td><span class="pill ok">Đạt</span></td><td>Mốc thật 1–3 hợp đồng/tuần nên không daily; NSM theo tuần, retention khung 4 tuần</td></tr>
+        <tr><td>Loop có reason to return ngoài notification?</td><td><span class="pill ok">Đạt</span></td><td>Hợp đồng đến qua kênh nội bộ khi có dự án mới, và thư viện tiền lệ bị khoá trong hệ thống</td></tr>
+        <tr><td>Retention không dùng chung một window cho mọi cadence?</td><td><span class="pill ok">Đạt</span></td><td>Khung 4 tuần (vì có ≥1 tuần trống/tháng), kèm lát cắt theo dự án mới</td></tr>
+        <tr><td>Mọi event đều map về một metric?</td><td><span class="pill ok">Đạt</span></td><td>Cột cuối bảng event ở mục 06 không có ô trống</td></tr>
+        <tr><td>Metric nào cũng có event để tính nó?</td><td><span class="pill ok">Đạt</span></td><td>Đã bỏ ứng viên NSM “số giờ tiết kiệm” vì không có event tính trung thực được</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Revision log</h3>
+  <ol class="rev measure">
+    <li><b>Đổi core action từ clause-level sang contract-level.</b> Ban đầu xét <code>risk_finding_resolved</code> vì nó lặp nhiều và dễ đo. Đổi sang “xuất bản kết luận một hợp đồng” vì chốt 3/20 phát hiện rồi bỏ dở thì core job vẫn chưa xong — không đạt tiêu chí “gần core value”. Clause-level được giữ lại làm thước đo depth.</li>
+    <li><b>Không chọn daily cadence</b> dù sản phẩm là công cụ làm việc. Hợp đồng đến từ kênh nội bộ khi có dự án mới, trung bình 1–3 hợp đồng/tuần (phỏng vấn n=1). Đẩy Pháp chế vào app mỗi ngày không tạo thêm value nào.</li>
+    <li><b>Thêm quality threshold vào định nghĩa Activated</b> sau khi nhận ra bản “publish ≥2 hợp đồng” đơn thuần vẫn đếm được người <code>dismissed</code> sạch mọi phát hiện cho xong.</li>
+    <li><b>Loại ứng viên NSM “số giờ tiết kiệm”</b> — nghe đúng với core job nhưng vi phạm luật mọi metric phải có event để tính.</li>
+    <li><b>Giữ unit retention ở cấp cá nhân</b> dù sản phẩm hướng B2B, vì persona đã chốt là cá nhân Pháp chế và họ là người ký tên. Bản account-level ghi nhận là việc chưa làm.</li>
+    <li><b>Thay các con số nhịp phỏng đoán bằng số từ phỏng vấn một Pháp chế thật (n=1).</b> Bản đầu có “20–90 phút/hợp đồng”, “10–20 hợp đồng/tuần”, “đợt mở bán cách 4–8 tuần” do AI đưa ra không có nguồn. Số thật: 1–3 hợp đồng/tuần, 1–2 giờ/hợp đồng, ≥1 tuần trống/tháng. Con số “4–8 tuần” gỡ hẳn. Giới hạn: chỉ một người.</li>
+    <li><b>Đổi retention từ “đúng tuần thứ 4” sang khung 4 tuần.</b> Với ≥1 tuần trống/tháng, một điểm đo đơn lẻ tính nhầm khoảng một phần tư reviewer đang dùng bình thường là đã mất. Bỏ ngưỡng “≥2/tuần” và segment theo khối lượng vì mức trung bình chỉ 1–3.</li>
+    <li><b>Đổi activation window từ 7 sang 14 ngày, Activated từ 14 sang 30 ngày</b>, cùng lý do tuần trống.</li>
+    <li><b>Định nghĩa mức “Cao” theo Rule-book Pháp chế (10 nhóm điều khoản), AI chỉ gán nhóm.</b> Bản đầu để AI ngầm tự xếp mức, nghĩa là NSM đo output hệ thống. Thêm thuộc tính <code>severity_source</code>.</li>
+    <li><b>Gỡ câu “retention cao” khỏi mục benchmark</b> vì là khẳng định không nguồn.</li>
+    <li><b>Sửa trigger từ “Sale/CĐT đẩy sang” thành “kênh nội bộ khi có dự án mới”</b> theo đúng câu trả lời phỏng vấn.</li>
+    <li><b>Bỏ event <code>review_report_opened_by_sales</code> (7 → 6 event).</b> Event này là hành vi của Sale, không phải persona đã chốt, và trỏ tới một counter-metric “báo cáo bị bỏ qua” chưa từng được định nghĩa. Vi phạm luật mọi event phải map về một metric đã có.</li>
+    <li><b>Giữ Engagement-frequency bên cạnh NSM nhưng phân biệt rõ:</b> NSM ở cấp workspace, Frequency đọc phân bố theo từng reviewer.</li>
+  </ol>
+
+  <div class="danger">
+    <span class="eyebrow">Sáu điểm yếu tự nhận — trạng thái</span>
+    <ul class="clean" style="margin-top:.4rem">
+      <li><span class="pill ok">Đã xử lý</span> Các con số nhịp phỏng đoán: thay bằng số từ phỏng vấn 1 Pháp chế. Còn giới hạn n=1.</li>
+      <li><span class="pill ok">Đã xử lý</span> Mức “Cao” chưa định nghĩa ai xếp: Rule-book 10 nhóm, AI chỉ gán nhóm, Pháp chế được ghi đè.</li>
+      <li><span class="pill ok">Đã xử lý</span> Thư viện tiền lệ: đã có trong sản phẩm. Rủi ro còn lại là tiền lệ phải gắn theo điều khoản, không theo nguyên mẫu.</li>
+      <li><span class="pill ink">Giữ có lý do</span> Retention cấp cá nhân: persona đã chốt là cá nhân Pháp chế, người ký tên. Bản account-level là việc chưa làm.</li>
+      <li><span class="pill ok">Đã xử lý</span> Event của Sale lạc persona: đã bỏ.</li>
+      <li><span class="pill ok">Đã xử lý</span> Engagement-frequency gần trùng NSM: giữ cả hai, phân biệt cấp workspace và cấp reviewer.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p>Lưu Mạnh Hùng · 2A202602942 · Track 1 Day 20 · Bài cá nhân. Nguồn framework: deck Day 20 (North Star Metric, Retention &amp; Engagement, Nature vs Nurture, Habit Loop, Metric Definition Contract).</p>
+</footer>
+
+</div>
